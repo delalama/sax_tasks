@@ -18,11 +18,24 @@ const {
 	durationMinutes,
 	status,
 	attachments,
+	entryId = '',
 } =
-	Astro.props;
+	Astro.props as Props & { entryId?: string };
 const baseUrl = import.meta.env.BASE_URL;
 const resolvePublicPath = (filePath: string) =>
 	filePath.startsWith('/') ? `${baseUrl}${filePath.slice(1)}` : filePath;
+const getExtension = (filePath: string) => filePath.split('.').pop()?.toLowerCase() ?? '';
+const isPdf = (filePath: string) => getExtension(filePath) === 'pdf';
+const isAudio = (filePath: string) => ['mp3', 'wav', 'm4a', 'ogg'].includes(getExtension(filePath));
+const isVideo = (filePath: string) => ['mp4', 'webm', 'mov'].includes(getExtension(filePath));
+const siteHost = Astro.site?.hostname ?? '';
+const sitePath = Astro.site?.pathname ?? '/';
+const ownerFromSite = siteHost.endsWith('.github.io') ? siteHost.split('.')[0] : '';
+const repoFromSite = sitePath.split('/').filter(Boolean)[0] ?? '';
+const cmsRepoUrl =
+	ownerFromSite && repoFromSite
+		? `https://app.pagescms.org/${ownerFromSite}/${repoFromSite}/content/practices/`
+		: 'https://app.pagescms.org/';
 ---
 
 <html lang="es">
@@ -61,7 +74,38 @@ const resolvePublicPath = (filePath: string) =>
 				border-radius: 999px;
 			}
 			.attachments {
-				padding-left: 1.25rem;
+				padding-left: 0;
+				list-style: none;
+				display: grid;
+				gap: 1rem;
+			}
+			.attachment-item {
+				padding: 0.8rem;
+				border: 1px solid rgb(var(--gray-light));
+				border-radius: 10px;
+			}
+			.attachment-item p {
+				margin: 0 0 0.5rem;
+				color: rgb(var(--gray));
+			}
+			.pdf-viewer {
+				width: 100%;
+				height: 580px;
+				border: 1px solid rgb(var(--gray-light));
+				border-radius: 8px;
+			}
+			.edit-link {
+				display: inline-flex;
+				margin-top: 1rem;
+				padding: 0.4rem 0.8rem;
+				border-radius: 8px;
+				background: rgb(var(--gray-light));
+				text-decoration: none;
+			}
+			.edit-note {
+				margin-top: 0.5rem;
+				font-size: 0.9rem;
+				color: rgb(var(--gray));
 			}
 		</style>
 	</head>
@@ -100,13 +144,37 @@ const resolvePublicPath = (filePath: string) =>
 						<h2>Adjuntos</h2>
 						<ul class="attachments">
 							{attachments.map((filePath) => (
-								<li>
+								<li class="attachment-item">
+									<p>{filePath.split('/').pop()}</p>
+									{isPdf(filePath) && (
+										<iframe class="pdf-viewer" src={resolvePublicPath(filePath)} title={title} />
+									)}
+									{isAudio(filePath) && (
+										<audio controls src={resolvePublicPath(filePath)}>
+											Tu navegador no soporta audio embebido.
+										</audio>
+									)}
+									{isVideo(filePath) && (
+										<video controls width="100%" src={resolvePublicPath(filePath)}>
+											Tu navegador no soporta video embebido.
+										</video>
+									)}
 									<a href={resolvePublicPath(filePath)} target="_blank" rel="noreferrer">
-										{filePath.split('/').pop()}
+										Abrir archivo
 									</a>
 								</li>
 							))}
 						</ul>
+					</>
+				)}
+				{entryId && (
+					<>
+						<a class="edit-link" href={cmsRepoUrl} target="_blank" rel="noreferrer">
+							Editar en CMS
+						</a>
+						<p class="edit-note">
+							En el CMS busca esta entrada por slug: <code>{entryId}</code>
+						</p>
 					</>
 				)}
 				<hr />
