@@ -6,4 +6,6 @@ tags:
   - altissimo
 objective: ¡
 status: pendiente
+attachments:
+  - /media/Sobreagudos 2.pdf
 ---
