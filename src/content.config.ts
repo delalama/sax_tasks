@@ -15,6 +15,7 @@ const blog = defineCollection({
 			status: z.enum(['pendiente', 'en progreso', 'hecho']).default('pendiente'),
 			heroImage: z.string().optional(),
 			attachments: z.array(z.string()).default([]),
+			showEditButton: z.boolean().default(true),
 		}),
 });
 

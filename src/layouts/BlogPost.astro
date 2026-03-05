@@ -18,6 +18,7 @@ const {
 	durationMinutes,
 	status,
 	attachments,
+	showEditButton = true,
 	entryId = '',
 	entrySourcePath = '',
 } =
@@ -39,6 +40,7 @@ const cmsEditUrl =
 	ownerFromSite && repoFromSite && encodedSourcePath
 		? `https://app.pagescms.org/${ownerFromSite}/${repoFromSite}/${branch}/collection/practices/edit/${encodedSourcePath}`
 		: 'https://app.pagescms.org/';
+const canShowEditButton = showEditButton && cmsEditUrl !== 'https://app.pagescms.org/';
 ---
 
 <html lang="es">
@@ -170,7 +172,7 @@ const cmsEditUrl =
 						</ul>
 					</>
 				)}
-				{entrySourcePath && (
+				{canShowEditButton && (
 					<>
 						<a class="edit-link" href={cmsEditUrl} target="_blank" rel="noreferrer">
 							Editar en CMS

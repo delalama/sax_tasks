@@ -1,7 +1,7 @@
 ﻿media:
   input: public/media
   output: /media
-  categories: [image, document, audio]
+  categories: [image, document, audio, video]
 
 content:
   - name: practices
@@ -54,12 +54,17 @@ content:
         type: image
         required: false
       - name: attachments
-        label: Adjuntos (PDF/audio)
+        label: Adjuntos (PDF/audio/video)
         type: file
         required: false
         options:
-          categories: [document, audio]
+          categories: [document, audio, video]
           multiple: true
+      - name: showEditButton
+        label: Mostrar boton Editar en CMS
+        type: boolean
+        default: true
+        required: false
       - name: body
         label: Contenido
         type: rich-text
