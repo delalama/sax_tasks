@@ -1,0 +1,49 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={`Buscar | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<link rel="stylesheet" href={`${baseUrl}pagefind/pagefind-ui.css`} />
+		<style>
+			.search-wrap {
+				margin-top: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Buscar deberes</h1>
+			<p>Busca por ejercicios, notas o cualquier texto de tus entradas.</p>
+			<div id="search" class="search-wrap"></div>
+		</main>
+		<Footer />
+		<script src={`${baseUrl}pagefind/pagefind-ui.js`}></script>
+		<script>
+			new window.PagefindUI({
+				element: '#search',
+				showSubResults: true,
+				resetStyles: false,
+				translations: {
+					placeholder: 'Buscar en el registro...',
+					clear_search: 'Limpiar',
+					load_more: 'Cargar mas resultados',
+					search_label: 'Buscar',
+					filters_label: 'Filtros',
+					zero_results: 'Sin resultados para [SEARCH_TERM]',
+					many_results: '[COUNT] resultados para [SEARCH_TERM]',
+					one_result: '[COUNT] resultado para [SEARCH_TERM]',
+					alt_search: 'Sin resultados para [SEARCH_TERM]. Prueba [DIFFERENT_TERM] ',
+				},
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+﻿media:
+  input: public/uploads
+  output: /uploads
+
+content:
+  - name: practices
+    label: Entradas de saxo
+    type: collection
+    path: src/content/blog
+    filename: '{year}-{month}-{day}-{primary}.md'
+    view:
+      fields: [pubDate, title, status]
+      primary: title
+      sort: [pubDate, desc]
+    fields:
+      - name: title
+        label: Titulo
+        type: string
+        required: true
+      - name: description
+        label: Resumen
+        type: text
+        required: true
+      - name: pubDate
+        label: Fecha
+        type: date
+        required: true
+      - name: updatedDate
+        label: Fecha actualizacion
+        type: date
+        required: false
+      - name: tags
+        label: Etiquetas
+        type: string
+        list: true
+        required: false
+      - name: objective
+        label: Objetivo
+        type: text
+        required: false
+      - name: durationMinutes
+        label: Duracion (min)
+        type: number
+        required: false
+      - name: status
+        label: Estado
+        type: select
+        default: pendiente
+        options:
+          values: [pendiente, en progreso, hecho]
+      - name: heroImage
+        label: Foto
+        type: image
+        required: false
+      - name: body
+        label: Contenido
+        type: rich-text
