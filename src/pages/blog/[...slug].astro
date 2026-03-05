@@ -1,5 +1,7 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
@@ -13,8 +15,15 @@ type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content } = await render(post);
+const mdFileUrl = new URL(`../../content/blog/${post.id}.md`, import.meta.url);
+const mdxFileUrl = new URL(`../../content/blog/${post.id}.mdx`, import.meta.url);
+const entrySourcePath = existsSync(fileURLToPath(mdFileUrl))
+	? `src/content/blog/${post.id}.md`
+	: existsSync(fileURLToPath(mdxFileUrl))
+		? `src/content/blog/${post.id}.mdx`
+		: '';
 ---
 
-<BlogPost {...post.data} entryId={post.id}>
+<BlogPost {...post.data} entryId={post.id} entrySourcePath={entrySourcePath}>
 	<Content />
 </BlogPost>

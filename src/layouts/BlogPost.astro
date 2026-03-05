@@ -19,8 +19,9 @@ const {
 	status,
 	attachments,
 	entryId = '',
+	entrySourcePath = '',
 } =
-	Astro.props as Props & { entryId?: string };
+	Astro.props as Props & { entryId?: string; entrySourcePath?: string };
 const baseUrl = import.meta.env.BASE_URL;
 const resolvePublicPath = (filePath: string) =>
 	filePath.startsWith('/') ? `${baseUrl}${filePath.slice(1)}` : filePath;
@@ -32,9 +33,11 @@ const siteHost = Astro.site?.hostname ?? '';
 const sitePath = Astro.site?.pathname ?? '/';
 const ownerFromSite = siteHost.endsWith('.github.io') ? siteHost.split('.')[0] : '';
 const repoFromSite = sitePath.split('/').filter(Boolean)[0] ?? '';
-const cmsRepoUrl =
-	ownerFromSite && repoFromSite
-		? `https://app.pagescms.org/${ownerFromSite}/${repoFromSite}/content/practices/`
+const branch = import.meta.env.BRANCH_NAME || 'main';
+const encodedSourcePath = entrySourcePath ? encodeURIComponent(entrySourcePath) : '';
+const cmsEditUrl =
+	ownerFromSite && repoFromSite && encodedSourcePath
+		? `https://app.pagescms.org/${ownerFromSite}/${repoFromSite}/${branch}/collection/practices/edit/${encodedSourcePath}`
 		: 'https://app.pagescms.org/';
 ---
 
@@ -167,9 +170,9 @@ const cmsRepoUrl =
 						</ul>
 					</>
 				)}
-				{entryId && (
+				{entrySourcePath && (
 					<>
-						<a class="edit-link" href={cmsRepoUrl} target="_blank" rel="noreferrer">
+						<a class="edit-link" href={cmsEditUrl} target="_blank" rel="noreferrer">
 							Editar en CMS
 						</a>
 						<p class="edit-note">
