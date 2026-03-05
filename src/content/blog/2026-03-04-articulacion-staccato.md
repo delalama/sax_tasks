@@ -7,5 +7,5 @@ tags:
 objective: ¡
 status: pendiente
 attachments:
-  - /media/Sobreagudos 2.pdf
+  - /media/Sobreagudos.pdf
 ---
