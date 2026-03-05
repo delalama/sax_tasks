@@ -1,6 +1,7 @@
 ﻿media:
-  input: public/uploads
-  output: /uploads
+  input: public/media
+  output: /media
+  categories: [image, document, audio]
 
 content:
   - name: practices
@@ -52,6 +53,13 @@ content:
         label: Foto
         type: image
         required: false
+      - name: attachments
+        label: Adjuntos (PDF/audio)
+        type: file
+        required: false
+        options:
+          categories: [document, audio]
+          multiple: true
       - name: body
         label: Contenido
         type: rich-text

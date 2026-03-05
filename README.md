@@ -39,13 +39,21 @@ El comando genera `dist/` y el indice de busqueda en `dist/pagefind/`.
 2. Inicia sesion con GitHub y selecciona este repo.
 3. Pages CMS detectara `.pages.yml`.
 4. Crea entradas en la coleccion `Entradas de saxo`.
-5. Las imagenes se guardan en `public/uploads`.
+5. Las imagenes, PDF y audios se guardan en `public/media`.
 
 ## Estructura de contenido
 
 - Entradas: `src/content/blog/*.md`
 - Config CMS: `.pages.yml`
-- Fotos: `public/uploads`
+- Media (foto/PDF/audio): `public/media`
+
+## Adjuntar PDF a una entrada
+
+1. En el CMS, abre una entrada.
+2. En `Adjuntos (PDF/audio)`, sube tu PDF.
+3. Publica: el post mostrara enlaces en la seccion `Adjuntos`.
+
+Tambien puedes enlazar un archivo manualmente si ya existe en el repo: usa una ruta como `/media/tu-archivo.pdf`.
 
 ## Notas
 

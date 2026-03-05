@@ -7,7 +7,18 @@ import Header from '../components/Header.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, tags, objective, durationMinutes, status } =
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	tags,
+	objective,
+	durationMinutes,
+	status,
+	attachments,
+} =
 	Astro.props;
 ---
 
@@ -46,6 +57,9 @@ const { title, description, pubDate, updatedDate, heroImage, tags, objective, du
 				padding: 0.2rem 0.5rem;
 				border-radius: 999px;
 			}
+			.attachments {
+				padding-left: 1.25rem;
+			}
 		</style>
 	</head>
 
@@ -73,6 +87,20 @@ const { title, description, pubDate, updatedDate, heroImage, tags, objective, du
 							<li>{tag}</li>
 						))}
 					</ul>
+				)}
+				{attachments.length > 0 && (
+					<>
+						<h2>Adjuntos</h2>
+						<ul class="attachments">
+							{attachments.map((filePath) => (
+								<li>
+									<a href={filePath} target="_blank" rel="noreferrer">
+										{filePath.split('/').pop()}
+									</a>
+								</li>
+							))}
+						</ul>
+					</>
 				)}
 				<hr />
 				<div class="prose">
