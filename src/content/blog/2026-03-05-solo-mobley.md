@@ -1,35 +1,23 @@
-﻿---
-title: Solo mobley
-description: |
-  Chequear solo mobley rember
+---
+title: Solo Mobley
+description: |-
+  Vimos tongue en arpegios
 
-  Ultima clase vimos tongue en arpegios
+  melo y primera parte del solo
 
-  Ave María
-  I -I -I- I7
-  IV - IVM -I -I
-
-  MELO
-  I -Idim - I/III - V7
-  VI - VI - IIm7 - V7
-  I- I - IAugM7- %
-  VII7 - % - VIIm7 - III7
-  VI - VIb7 - IIm7 - VI7
-  IIMaj - II7 - VMaj - %
-  VMaj - % - I - I
-  VMaj- VMaj - VIm7 - VIm7
-  V7- V7 - IIm7 - IIm7
-  IIm7 - VIdim - V7 - %
-
-  I -Idim - I/III - V7
-  I -I -I- I7
-  IV - IVM -I -I
-
-  Review 11/3:
-pubDate: 2026-03-05
-tags:
-  - Solo
+  *ACABAR SOLO
+pubDate: 2026-03-04
 status: pendiente
 showEditButton: true
 ---
+﻿--- title: Solo mobley description: | Chequear solo mobley rember
 
+Ultima clase vimos tongue en arpegios
+
+Ave María I -I -I- I7 IV - IVM -I -I
+
+MELO I -Idim - I/III - V7 VI - VI - IIm7 - V7 I- I - IAugM7- % VII7 - % - VIIm7 - III7 VI - VIb7 - IIm7 - VI7 IIMaj - II7 - VMaj - % VMaj - % - I - I VMaj- VMaj - VIm7 - VIm7 V7- V7 - IIm7 - IIm7 IIm7 - VIdim - V7 - %
+
+I -Idim - I/III - V7 I -I -I- I7 IV - IVM -I -I
+
+## Review 11/3: pubDate: 2026-03-05 tags: - Solo status: pendiente showEditButton: true
