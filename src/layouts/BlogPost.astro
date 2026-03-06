@@ -57,6 +57,9 @@ const canShowEditButton = showEditButton && cmsEditUrl !== 'https://app.pagescms
 				font-size: 0.95rem;
 				color: rgb(var(--gray));
 			}
+			.entry-description {
+				white-space: pre-wrap;
+			}
 			.hero-image {
 				margin: 1rem 0;
 			}
@@ -112,6 +115,9 @@ const canShowEditButton = showEditButton && cmsEditUrl !== 'https://app.pagescms
 				font-size: 0.9rem;
 				color: rgb(var(--gray));
 			}
+			.prose p {
+				white-space: pre-wrap;
+			}
 		</style>
 	</head>
 
@@ -120,7 +126,7 @@ const canShowEditButton = showEditButton && cmsEditUrl !== 'https://app.pagescms
 		<main>
 			<article>
 				<h1>{title}</h1>
-				<p>{description}</p>
+				<p class="entry-description">{description}</p>
 				<div class="meta">
 					<span><FormattedDate date={pubDate} /></span>
 					<span>Estado: {status}</span>
