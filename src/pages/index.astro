@@ -11,27 +11,83 @@ const baseUrl = import.meta.env.BASE_URL;
 <html lang="es">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			:root {
+				--home-surface: #f4efe4;
+				--home-ink: #171717;
+				--home-accent: #c46a2a;
+			}
+
+			body {
+				background:
+					radial-gradient(circle at top left, rgba(196, 106, 42, 0.18), transparent 30%),
+					linear-gradient(180deg, #fbf7ef 0%, var(--home-surface) 100%);
+			}
+
+			main.home {
+				min-height: calc(100vh - 14rem);
+				display: grid;
+				align-items: center;
+				padding-block: 3rem 4rem;
+			}
+
+			.home-nav {
+				display: grid;
+				gap: 1.25rem;
+			}
+
+			.home-link {
+				display: block;
+				padding: 1.4rem 1.6rem;
+				border: 2px solid rgba(23, 23, 23, 0.12);
+				border-radius: 1.5rem;
+				background: rgba(255, 255, 255, 0.7);
+				color: var(--home-ink);
+				font-size: clamp(2.2rem, 7vw, 5.6rem);
+				font-weight: 800;
+				line-height: 0.95;
+				letter-spacing: -0.05em;
+				text-decoration: none;
+				text-transform: uppercase;
+				box-shadow: 0 18px 40px rgba(23, 23, 23, 0.08);
+				transition:
+					transform 140ms ease,
+					border-color 140ms ease,
+					box-shadow 140ms ease,
+					background-color 140ms ease;
+			}
+
+			.home-link:hover,
+			.home-link:focus-visible {
+				transform: translateY(-3px);
+				border-color: var(--home-accent);
+				background: #fffdf8;
+				box-shadow: 0 22px 52px rgba(23, 23, 23, 0.12);
+				outline: none;
+			}
+
+			@media (max-width: 720px) {
+				main.home {
+					padding-block: 2rem 3rem;
+				}
+
+				.home-link {
+					padding: 1.2rem 1.1rem;
+					font-size: clamp(2rem, 12vw, 3.4rem);
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>Registro de deberes de saxo</h1>
-			<p>
-				Sitio estatico para guardar practicas, tareas y notas de estudio con entradas tipo blog y fotos.
-			</p>
-			<ul>
-				<li><a href={`${baseUrl}blog`}>Ver registro</a></li>
-				<li><a href={`${baseUrl}buscar`}>Buscar por texto</a></li>
-				<li>
-					<a href="https://pagescms.org/" target="_blank" rel="noreferrer">Abrir Pages CMS</a>
-				</li>
-			</ul>
-			<h2>Flujo rapido</h2>
-			<ol>
-				<li>Abre Pages CMS desde el movil e inicia sesion con GitHub.</li>
-				<li>Crea una nueva entrada en la coleccion "Entradas de saxo".</li>
-				<li>Sube fotos en el campo de imagen y publica.</li>
-			</ol>
+		<main class="home">
+			<nav class="home-nav" aria-label="Principal">
+				<a class="home-link" href={`${baseUrl}blog`}>Ver registro</a>
+				<a class="home-link" href={`${baseUrl}buscar`}>Buscar por texto</a>
+				<a class="home-link" href="https://pagescms.org/" target="_blank" rel="noreferrer">
+					Abrir Pages CMS
+				</a>
+			</nav>
 		</main>
 		<Footer />
 	</body>

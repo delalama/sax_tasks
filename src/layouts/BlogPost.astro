@@ -28,7 +28,8 @@ const resolvePublicPath = (filePath: string) =>
 	filePath.startsWith('/') ? `${baseUrl}${filePath.slice(1)}` : filePath;
 const getExtension = (filePath: string) => filePath.split('.').pop()?.toLowerCase() ?? '';
 const isPdf = (filePath: string) => getExtension(filePath) === 'pdf';
-const isAudio = (filePath: string) => ['mp3', 'wav', 'm4a', 'ogg'].includes(getExtension(filePath));
+const isAudio = (filePath: string) =>
+	['mp3', 'wav', 'm4a', 'ogg', 'aac', 'flac', 'opus', 'weba'].includes(getExtension(filePath));
 const isVideo = (filePath: string) => ['mp4', 'webm', 'mov'].includes(getExtension(filePath));
 const siteHost = Astro.site?.hostname ?? '';
 const sitePath = Astro.site?.pathname ?? '/';
